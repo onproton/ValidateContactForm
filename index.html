@@ -1,0 +1,93 @@
+
+<!-- basic html page displaying the form and the submit button using the Bootstrap framework.
+utilizes Javascript/jQuery for validation that the text submitted does not contain user's contact information -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Contact Form" content="">
+    <meta name="author" content="">
+
+    <title>Contact Form</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            padding-top: 70px;
+            /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+        }
+        p.caption-text {
+            font-size: .8em;
+        }
+    </style>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Script to validate input -->
+    <script type="text/javascript" src="js/script.js"></script>
+</head>
+
+<body>
+    <!-- Navigation (removed for purposes of this project)
+    <header>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    </nav>
+    </header>
+    -->
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-left">
+                <h1>User Contact Form</h1>
+
+                <!--- this is the form element where the data is entered --->
+                <form class="commentForm">
+
+                       <label for="message">Message:</label>
+                       <textarea class="form-control" rows="5" id="message" wrap>
+Test Phone Numbers:
+1-234-567-8901,
+1-234-567-8901 x1234,
+1-234-567-8901 ext1234,
+1 (234) 567-8901,
+1.234.567.8901,
+1/234/567/8901,
+12345678901,
+
+Test E-mails:
+aa@bb.cc,
+eliza.danyi@gmail.com,
+eliza+danyi@gmail.com,
+not a phone number or email address
+
+                       </textarea>
+                       <p class="caption-text">*please do not enter personal contact information into this form</p>
+
+                       <button type="submit">Submit</button>
+                </form>
+
+                <!--displays the output after the information runs through the filter in script.js-->
+                <p><br>Result:</p>
+                <p id="output"></p>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</body>
+</html>

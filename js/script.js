@@ -21,14 +21,33 @@ var emailRules = {
 };
 
 //defines the rules for what might be considered phone contact information with regex
-var phoneRules = {
+
+
+var usPhoneRules = {
     phone: function(t) { return t.replace(/1?\W*([2-9][0-8][0-9])\W*([2-9][0-9]{2})\W*([0-9]{4})(\se?x?t?(\d*))?/gi, "***-***-****"); }
 };
 
-//loops over all the methods of the rules object and returns the output to a paragraph in the html
+/*Some of the different regex codes I've come up with for the international phone numbers, needs more testing
+* maybe [+ ]?(\d)?[( ./-]?\d{1,4}[- ./)]?[ -./]?\d{2,4}[-. ]?\d{3,4}\b
+* (\W\d{2,3})*(\+)*\d{1,3}?\W+([2-9][0-8][0-9])\W*([2-9][0-9]{1,4})\W*([0-9]{2,4})*(\se?x?t?(\d*))?
+*/
+var intlPhoneRules = {
+    phone: function(t) { return t.replace(/[+ ]?(\d)?[( ./-]?\d{1,4}[- ./)]?[ -./]?\d{2,4}[- /.]?\d{3,4}\b/gi, "***-***-****"); }
+};
+
+
+var userNameRules = {
+    phone: function(t) { return t.replace(/(username)+((\s)*(\W)*)*(\s*is*\s)*(?:\s*\S+)?/gi, "**********"); }
+};
+
+
+
+//loops over all the methods of the rules object and returns the filtered output to a paragraph in the html
 function filter(text) {
     for (var e in emailRules) { text = emailRules[e](text); }
-    for (var p in phoneRules) { text = phoneRules[p](text); }
+    for (var p in usPhoneRules) { text = usPhoneRules[p](text); }
+    for (var l in intlPhoneRules) { text = intlPhoneRules[l](text); }
+    for (var u in userNameRules) { text = userNameRules[u](text); }
 
     $('#output').text(text);
 }

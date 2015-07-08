@@ -17,6 +17,9 @@ $(function(){
 
 });
 
+//sets the original value to the filtered var to false, if text changes, will be true
+var filtered = false;
+
 //defines the rules for what might be considered email contact information with regex
 
 var emailRules = {
@@ -64,6 +67,7 @@ var websiteRules = {
 
 //loops over all the methods of the rules object and returns the filtered output to a paragraph in the html
 function filter(text) {
+    var originalText = text;
     for (var e in emailRules) { text = emailRules[e](text); }
     for (var p in usPhoneRules) { text = usPhoneRules[p](text); }
     for (var l in intlPhoneRules) { text = intlPhoneRules[l](text); }
@@ -73,7 +77,11 @@ function filter(text) {
     //for (var emailText in emailTextRules) { text = emailTextRules[emailText](text); }
     //for (var pnl in phoneNumberLettersRule) { text = phoneNumberLettersRule[pnl](text); }
 
-
-
+    //prints the output to the paragraph with the id: output
     $('#output').text(text);
+
+    //checks if message has been filtered or not
+    if ($('#message').val() != text) {
+        filtered =true;
+    }
 }

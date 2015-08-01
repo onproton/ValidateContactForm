@@ -85,7 +85,7 @@ function filter(text) {
 
 // function for testing the filter variable - can be erased or commented out
 function filterTest() {
-    if (filtered) {
+    if (filtered === true) {
         $('#filtered').text("This text was filtered");
     } else {
        $('#filtered').text("This text was not filtered"); }
